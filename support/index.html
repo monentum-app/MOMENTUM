@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+<title>Support — MOMENTUM</title>
+<meta name="description" content="Support for the MOMENTUM iOS app.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body><main class="shell">
+<header class="topbar">
+  <a href="../" aria-label="MOMENTUM home">
+    <img class="wordmark dark" src="../assets/momentum-wordmark-dark.png" alt="MOMENTUM">
+    <img class="wordmark light" src="../assets/momentum-wordmark-light.png" alt="MOMENTUM">
+  </a>
+  <span class="badge">Support</span>
+</header>
+
+<section class="hero">
+  <div class="kicker">MOMENTUM Support</div>
+  <h1>Something not<br>moving right?</h1>
+  <p>Tell us what happened and we'll use the details to help. You don't need an account or support login.</p>
+</section>
+
+<section class="card">
+  <h2>Send a support request</h2>
+  <p>Give us enough detail to reproduce the problem. Please don't include passwords, health information or other sensitive personal information.</p>
+  <div class="rule"></div>
+
+  <form id="supportForm" class="form-grid" autocomplete="on">
+    <label>Name
+      <input type="text" name="name" autocomplete="name" maxlength="100" required>
+    </label>
+
+    <label>Email
+      <input type="email" name="email" autocomplete="email" maxlength="180" required>
+    </label>
+
+    <label>What can we help with?
+      <select name="category" required>
+        <option value="" selected disabled>Select a category</option>
+        <option>App problem</option>
+        <option>Workout or exercise</option>
+        <option>Apple Health</option>
+        <option>iCloud restore</option>
+        <option>Notifications or sound</option>
+        <option>Accessibility</option>
+        <option>Privacy</option>
+        <option>Feedback or suggestion</option>
+        <option>Other</option>
+      </select>
+    </label>
+
+    <label>Message
+      <textarea name="message" maxlength="5000" placeholder="What happened? What did you expect to happen?" required></textarea>
+    </label>
+
+    <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="hidden" name="_subject" value="MOMENTUM support request">
+    <input type="hidden" name="_template" value="table">
+
+    <button id="submitButton" type="submit">Submit support request</button>
+    <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+  </form>
+
+  <p class="small-note">Support messages are securely handed off to MOMENTUM's support mailbox through FormSubmit. The first live submission may require a one-time mailbox confirmation before delivery is activated.</p>
+</section>
+
+<section class="card">
+  <h2>Useful details</h2>
+  <p>If you're reporting a bug, it helps to include your iPhone model, iOS version, MOMENTUM version, what you were doing immediately before the issue, and whether it happens every time.</p>
+</section>
+
+<section class="card">
+  <h2>Privacy</h2>
+  <p>Support submissions are used to respond to your request and diagnose the issue you describe. For more information, read the <a href="../privacy/">MOMENTUM Privacy Policy</a>.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-links"><a href="../privacy/">Privacy</a><a href="../support/">Support</a></div>
+  <div>© 2026 MOMENTUM. All rights reserved.</div>
+</footer>
+</main>
+
+<script>
+(() => {
+  const form = document.getElementById('supportForm');
+  const status = document.getElementById('formStatus');
+  const button = document.getElementById('submitButton');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    button.disabled = true;
+    status.className = 'form-status';
+    status.textContent = 'Sending…';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    delete data._honey;
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/momentum_app@icloud.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === false) throw new Error('Submission failed');
+
+      form.reset();
+      status.className = 'form-status success';
+      status.textContent = 'Sent. Thanks — your support request is on its way.';
+    } catch (error) {
+      status.className = 'form-status error';
+      status.textContent = 'That didn’t send. Please try again in a moment.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+</script>
+</body></html>
