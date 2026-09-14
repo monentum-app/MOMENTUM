@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="The story behind MOMENTUM — a simple home workout app with no ads and no subscriptions.">
+  <title>Our Story | MOMENTUM</title>
+
+  <style>
+    :root {
+      --bg: #070707;
+      --panel: #111111;
+      --panel-soft: #171717;
+      --text: #f5f5f5;
+      --muted: #a7a7a7;
+      --line: rgba(255,255,255,.10);
+      --copper: #C84E12;
+      --copper-soft: rgba(200,78,18,.14);
+      --max: 920px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--bg);
+      color-scheme: dark;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% -10%, rgba(200,78,18,.16), transparent 34%),
+        radial-gradient(circle at 90% 6%, rgba(200,78,18,.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(7,7,7,.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      min-width: 0;
+      text-decoration: none;
+    }
+
+    .brand img {
+      display: block;
+      width: min(245px, 52vw);
+      max-height: 34px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .brand-fallback {
+      display: none;
+      font-weight: 900;
+      letter-spacing: .08em;
+      font-size: 18px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      font-weight: 650;
+      color: var(--muted);
+    }
+
+    nav a {
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus-visible,
+    nav a[aria-current="page"] {
+      color: var(--text);
+    }
+
+    main {
+      padding: 68px 0 80px;
+    }
+
+    .eyebrow,
+    .section-number {
+      color: var(--copper);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .hero {
+      padding: clamp(28px, 6vw, 58px);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(200,78,18,.12), rgba(255,255,255,.025)),
+        var(--panel);
+      box-shadow: 0 24px 60px rgba(0,0,0,.28);
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 12px 0 18px;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .hero h1 span { color: var(--copper); }
+
+    .lead {
+      max-width: 690px;
+      margin: 0;
+      font-size: clamp(18px, 2.5vw, 22px);
+      color: #d5d5d5;
+      line-height: 1.5;
+    }
+
+    .story {
+      display: grid;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .section {
+      padding: clamp(24px, 4vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(17,17,17,.88);
+    }
+
+    .section h2 {
+      margin: 8px 0 16px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+    }
+
+    .section p {
+      margin: 0 0 14px;
+      max-width: 760px;
+      color: #d1d1d1;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .evolution {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stage {
+      min-height: 108px;
+      padding: 16px;
+      border-radius: 17px;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .stage span {
+      color: var(--copper);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .stage b {
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .principle,
+    .question {
+      margin: 22px 0;
+      padding: 18px 20px;
+      border-left: 3px solid var(--copper);
+      border-radius: 0 14px 14px 0;
+      background: var(--copper-soft);
+    }
+
+    .principle p,
+    .question {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .manifesto {
+      margin-top: 28px;
+      padding: clamp(34px, 6vw, 58px);
+      border-radius: 30px;
+      text-align: center;
+      border: 1px solid rgba(200,78,18,.34);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(200,78,18,.18), transparent 45%),
+        var(--panel);
+    }
+
+    .manifesto .mark {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      margin-bottom: 14px;
+    }
+
+    .manifesto h2 {
+      max-width: 700px;
+      margin: 0 auto 14px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .manifesto p {
+      max-width: 700px;
+      margin: 9px auto;
+      color: #d4d4d4;
+    }
+
+    .promise {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: clamp(16px, 2.8vw, 21px);
+      font-weight: 900;
+    }
+
+    .promise .sep { color: var(--copper); }
+
+    footer {
+      padding: 34px 0 44px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        min-height: 66px;
+        gap: 12px;
+      }
+
+      nav { gap: 12px; font-size: 13px; }
+
+      main { padding-top: 34px; }
+
+      .evolution { grid-template-columns: repeat(2, 1fr); }
+
+      .brand img { width: min(190px, 42vw); }
+    }
+
+    @media (max-width: 480px) {
+      .wrap { width: min(calc(100% - 24px), var(--max)); }
+
+      .topbar {
+        align-items: center;
+      }
+
+      nav a:first-child { display: none; }
+
+      .hero,
+      .manifesto { border-radius: 24px; }
+
+      .section { border-radius: 20px; }
+
+      .evolution { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap topbar">
+      <a class="brand" href="index.html" aria-label="MOMENTUM home">
+        <img
+          src="MOMENTUM_WORDMARK_APPROVED.png"
+          alt="MOMENTUM"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block';">
+        <span class="brand-fallback">MOMENTUM</span>
+      </a>
+
+      <nav aria-label="Site navigation">
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="story.html" aria-current="page">Our story</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Why MOMENTUM exists</div>
+      <h1>Home training shouldn't need to be <span>complicated.</span></h1>
+      <p class="lead">
+        MOMENTUM started with a simple frustration: getting fitter at home shouldn't
+        mean expensive memberships, cluttered apps or another monthly subscription.
+      </p>
+    </section>
+
+    <div class="story">
+      <section class="section">
+        <div class="section-number">01 — The beginning</div>
+        <h2>It wasn't supposed to become an app.</h2>
+        <p>
+          The original idea was simply to create a useful collection of structured
+          calisthenics workouts that could be followed at home.
+        </p>
+        <p>
+          That idea became a PDF, then an interactive PowerPoint, then a browser-based
+          training tool. Eventually, almost organically, it grew into <strong>MOMENTUM</strong>.
+        </p>
+
+        <div class="evolution" aria-label="MOMENTUM development evolution">
+          <div class="stage"><span>01</span><b>Workout PDF</b></div>
+          <div class="stage"><span>02</span><b>Interactive PowerPoint</b></div>
+          <div class="stage"><span>03</span><b>Browser training tool</b></div>
+          <div class="stage"><span>04</span><b>MOMENTUM</b></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-number">02 — Built through iteration</div>
+        <h2>Hundreds of hours. Dozens of iterations.</h2>
+        <p>
+          Almost every part of the experience has been designed, tested, questioned
+          and rebuilt — workout generation, equipment-aware training, timers,
+          progression, onboarding, visual design, sound and a bespoke exercise
+          animation system.
+        </p>
+        <p>
+          MOMENTUM wasn't conceived as a finished software product. It became one
+          through iteration: keeping what worked, rebuilding what didn't and removing
+          things that didn't earn their place.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-number">03 — Ownership</div>
+        <h2>Fitness shouldn't be rented forever.</h2>
+        <p>
+          Fitness apps increasingly turn exercise into a service: accounts, adverts,
+          premium tiers, locked features and subscriptions that continue for as long
+          as you want access.
+        </p>
+
+        <div class="principle">
+          <p>Buy it once. Own it. Train with it.</p>
+        </div>
+
+        <p>
+          MOMENTUM was created as an alternative. <strong>No advertising. No recurring
+          subscription.</strong> No artificial feature restrictions designed to push
+          an upgrade.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-number">04 — The product ethos</div>
+        <h2>Every feature has to justify its place.</h2>
+        <p>
+          MOMENTUM isn't trying to become a social network, a lifestyle platform or a
+          replacement for a personal trainer. It doesn't need feeds, leaderboards or
+          endless metrics.
+        </p>
+
+        <div class="question">
+          Does this make it easier to start a workout, complete it and come back again?
+        </div>
+
+        <p>
+          That question has shaped the app. Keep the interface focused. Keep decisions
+          simple. Use equipment if you have it; train without it if you don't. Provide
+          enough guidance to keep someone moving without burying them beneath information.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-number">05 — Knowing what to leave out</div>
+        <h2>More features don't automatically make a better app.</h2>
+        <p>
+          Features have been added, removed, redesigned and sometimes deliberately
+          parked when they didn't improve the core experience.
+        </p>
+        <p>
+          MOMENTUM hasn't been built by continually adding more. Much of its identity
+          has come from deciding <strong>what it doesn't need to be.</strong>
+        </p>
+      </section>
+    </div>
+
+    <section class="manifesto">
+      <img class="mark" src="N_chevron_APPROVED_MASTER.png" alt="" aria-hidden="true"
+           onerror="this.style.display='none';">
+      <h2>From a personal workout guide to an independent fitness app.</h2>
+      <p>The technology changed. The ambition grew. The original idea didn't.</p>
+      <p>
+        <strong>
+          Make home training simple enough to start, useful enough to stick with,
+          and something you can actually own.
+        </strong>
+      </p>
+
+      <div class="promise" aria-label="No Ads, No Subscriptions, Yours Forever">
+        <span>No Ads</span>
+        <span class="sep" aria-hidden="true">&gt;</span>
+        <span>No Subscriptions</span>
+        <span class="sep" aria-hidden="true">&gt;</span>
+        <span>Yours Forever</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      MOMENTUM<br>
+      © 2026 Mark Taylor. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
