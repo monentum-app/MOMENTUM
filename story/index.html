@@ -66,11 +66,6 @@
 
     a { color: inherit; }
 
-    .wrap {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
-
     @media (prefers-color-scheme: dark) {
     }
 
@@ -91,10 +86,6 @@
     nav a:focus-visible,
     nav a[aria-current="page"] {
       color: var(--text);
-    }
-
-    main {
-      padding: 68px 0 80px;
     }
 
     .eyebrow,
@@ -299,7 +290,6 @@
     }
 
     @media (max-width: 480px) {
-      .wrap { width: min(calc(100% - 24px), var(--max)); }
 
       nav a:first-child { display: none; }
 
@@ -314,18 +304,14 @@
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 
-<body>
-  <div class="wrap">
-    <header class="topbar">
+<body><main class="shell">
+<header class="topbar">
       <a href="../" aria-label="MOMENTUM home">
         <img class="wordmark dark" src="../assets/momentum-wordmark-dark.png" alt="MOMENTUM">
         <img class="wordmark light" src="../assets/momentum-wordmark-light.png" alt="MOMENTUM">
       </a>
       <span class="badge">Our Story</span>
     </header>
-  </div>
-
-  <main class="wrap">
     <section class="hero">
       <div class="eyebrow">Why MOMENTUM exists</div>
       <h1>Home training shouldn't need to be <span>complicated.</span></h1>
@@ -444,8 +430,6 @@
         <span>Yours Forever</span>
       </div>
     </section>
-  </main>
-
   <footer>
     <div class="wrap">
       <div style="opacity:.62;font-size:.9em;margin-bottom:6px;">For Alex &amp; Zach</div>
@@ -453,5 +437,5 @@
       © 2026 Mark Taylor. All rights reserved.
     </div>
   </footer>
-</body>
+</main></body>
 </html>
